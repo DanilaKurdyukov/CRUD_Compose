@@ -1,5 +1,10 @@
 package com.example.simplecrudapp.ui.view
 
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.asPaddingValues
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.navigationBars
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.Icon
@@ -7,8 +12,10 @@ import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.vectorResource
+import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.example.simplecrudapp.R
@@ -37,8 +44,9 @@ object NavBarItems {
 
 @Composable
 fun BottomNavigationBar(navController: NavController) {
+    val navigationBarHeight = WindowInsets.navigationBars.asPaddingValues().calculateBottomPadding()
     NavigationBar(
-
+        modifier = Modifier.navigationBarsPadding()
     ) {
         val backStackEntry = navController.currentBackStackEntryAsState()
         val currentRoute = backStackEntry.value?.destination?.route
