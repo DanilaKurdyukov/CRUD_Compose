@@ -1,9 +1,9 @@
 package com.example.simplecrudapp.data.navigation
 
-import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.annotation.DrawableRes
 
 data class NavBarItem(
     val title: String,
-    val image: ImageVector,
+    @DrawableRes val imageId: Int,
     val route: String
 )

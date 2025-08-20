@@ -20,26 +20,62 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
 import com.example.simplecrudapp.R
+import com.example.simplecrudapp.data.Company
+import com.example.simplecrudapp.data.Employee
+import com.example.simplecrudapp.data.Position
 import com.example.simplecrudapp.ui.theme.SimpleCRUDAppTheme
 import com.example.simplecrudapp.ui.theme.blackViolet
-
+import com.example.simplecrudapp.ui.view.EmployeeCardItem
 class MainActivity : ComponentActivity() {
 
-    val persons = mutableStateListOf(
-        Person(
-            name = "Kurdyukov",
+    val employees = mutableStateListOf(
+        Employee(
+            id = 1,
+            firstName = "Kurduykov",
+            middleName = "Danila",
+            lastName = "Denisovich",
             age = 23,
-            weight = 80
+            position = Position(
+                id = 1,
+                name = "Engineneer",
+                salary = 120000.0
+            ),
+            company = Company(
+                id = 1,
+                name = "TSPC"
+            )
         ),
-        Person(
-            name = "Sholokhov",
+        Employee(
+            id = 1,
+            firstName = "Tkachenko",
+            middleName = "Daniil",
+            lastName = "Alekseevich",
             age = 23,
-            weight = 80
+            position = Position(
+                id = 1,
+                name = "Manager",
+                salary = 150000.0
+            ),
+            company = Company(
+                id = 1,
+                name = "X5 Group"
+            )
         ),
-        Person(
-            name = "Andreev",
-            age = 23,
-            weight = 80
+        Employee(
+            id = 1,
+            firstName = "Sholokhov",
+            middleName = "Maksim",
+            lastName = "Dmitrievich",
+            age = 22,
+            position = Position(
+                id = 1,
+                name = "Manager",
+                salary = 130000.0
+            ),
+            company = Company(
+                id = 1,
+                name = "X5 Group"
+            )
         )
     )
 
@@ -70,7 +106,7 @@ class MainActivity : ComponentActivity() {
                             .fillMaxSize()
                     ) {
                         val (personList, txt1) = createRefs()
-                        PersonList(
+                        EmployeeList(
                             modifier = Modifier.constrainAs(personList) {
                                 top.linkTo(parent.top)
                                 start.linkTo(parent.start)
@@ -84,12 +120,12 @@ class MainActivity : ComponentActivity() {
     }
 
     @Composable
-    fun PersonList(modifier: Modifier){
+    fun EmployeeList(modifier: Modifier){
         LazyColumn(
             modifier = modifier.padding(top = 10.dp)
         ) {
-            items(items = persons) { person ->
-                PersonCardItem(person)
+            items(items = employees) { employee ->
+                EmployeeCardItem(employee)
             }
         }
     }
