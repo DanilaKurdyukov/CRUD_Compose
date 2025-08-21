@@ -10,6 +10,7 @@ import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
+import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -21,6 +22,8 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import com.example.simplecrudapp.R
 import com.example.simplecrudapp.data.navigation.NavBarItem
 import com.example.simplecrudapp.data.navigation.Route
+import com.example.simplecrudapp.ui.theme.darkBurgundy
+import com.example.simplecrudapp.ui.theme.white
 
 object NavBarItems {
     val items = listOf<NavBarItem>(
@@ -44,7 +47,6 @@ object NavBarItems {
 
 @Composable
 fun BottomNavigationBar(navController: NavController) {
-    val navigationBarHeight = WindowInsets.navigationBars.asPaddingValues().calculateBottomPadding()
     NavigationBar(
         modifier = Modifier.navigationBarsPadding()
     ) {
@@ -52,6 +54,10 @@ fun BottomNavigationBar(navController: NavController) {
         val currentRoute = backStackEntry.value?.destination?.route
         NavBarItems.items.forEach { item ->
             NavigationBarItem(
+                colors = NavigationBarItemDefaults.colors(
+                    indicatorColor = darkBurgundy,
+                    selectedIconColor = white
+                ),
                 selected = currentRoute == item.route,
                 icon = {
                     Icon(
